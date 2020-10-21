@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11529FDB-1F52-414D-AEA1-AC0F827B3F94}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MascotViewer</RootNamespace>
+    <AssemblyName>MascotViewer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.4.3.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.5.4.0\lib\net46\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.Annotation, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.Annotation.1.1.0\lib\net46\LightInject.Annotation.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.Web, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.Web.2.0.0\lib\net46\LightInject.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.2.0.0\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="matrix_science.msparser">
+      <HintPath>..\..\..\..\..\..\mascotParser\csharp_vs2015\bin\matrix_science.msparser.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.0\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.3.1.9\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Abstractions.3.1.9\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.3.1.9\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.9\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.9\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.4.0.138\lib\net461\MiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler.Shared, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.Shared.4.0.138\lib\net461\MiniProfiler.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Namotion.Reflection, Version=1.0.14.0, Culture=neutral, PublicKeyToken=c2f9c3bdfae56102, processorArchitecture=MSIL">
+      <HintPath>..\packages\Namotion.Reflection.1.0.14\lib\net45\Namotion.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NJsonSchema, Version=10.2.1.0, Culture=neutral, PublicKeyToken=c2f9c3bdfae56102, processorArchitecture=MSIL">
+      <HintPath>..\packages\NJsonSchema.10.2.1\lib\net45\NJsonSchema.dll</HintPath>
+    </Reference>
+    <Reference Include="NPoco, Version=3.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPoco.3.9.4\lib\net45\NPoco.dll</HintPath>
+    </Reference>
+    <Reference Include="NSwag.Core, Version=13.8.2.0, Culture=neutral, PublicKeyToken=c2d88086e098d109, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSwag.Core.13.8.2\lib\net45\NSwag.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="ParallelExtensionsExtras, Version=1.2.3.0, Culture=neutral, PublicKeyToken=665f4d61f853b5a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ParallelExtensionsExtras.1.2.0.0\lib\net40\ParallelExtensionsExtras.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Charting, Version=6.2.1.13304, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.6.2.1.13304\lib\net452\SciChart.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Core, Version=6.2.1.13304, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.6.2.1.13304\lib\net452\SciChart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Data, Version=6.2.1.13304, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.6.2.1.13304\lib\net452\SciChart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Drawing, Version=6.2.1.13304, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.6.2.1.13304\lib\net452\SciChart.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.UI.Bootstrap, Version=3.1.251.0, Culture=neutral, PublicKeyToken=8eea68d53aa73a83, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.UI.Bootstrap.3.1.251\lib\net452\SciChart.UI.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.UI.Reactive, Version=3.1.251.0, Culture=neutral, PublicKeyToken=8eea68d53aa73a83, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.UI.Reactive.3.1.251\lib\net452\SciChart.UI.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Wpf.UI, Version=3.1.251.0, Culture=neutral, PublicKeyToken=8eea68d53aa73a83, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.Wpf.UI.3.1.251\lib\net452\SciChart.Wpf.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Wpf.UI.Transitionz, Version=3.1.251.0, Culture=neutral, PublicKeyToken=8eea68d53aa73a83, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.Wpf.UI.Transitionz.3.1.251\lib\net452\SciChart.Wpf.UI.Transitionz.dll</HintPath>
+    </Reference>
+    <Reference Include="Semver, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Semver.2.0.4\lib\net452\Semver.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.8.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Enrichers.Process, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Enrichers.Process.2.0.1\lib\net45\Serilog.Enrichers.Process.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Enrichers.Thread, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Enrichers.Thread.3.0.0\lib\net45\Serilog.Enrichers.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Filters.Expressions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Filters.Expressions.2.0.0\lib\net45\Serilog.Filters.Expressions.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Formatting.Compact, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Formatting.Compact.1.0.0\lib\net45\Serilog.Formatting.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Formatting.Compact.Reader, Version=1.0.3.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Formatting.Compact.Reader.1.0.3\lib\net45\Serilog.Formatting.Compact.Reader.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Settings.AppSettings, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Settings.AppSettings.2.2.2\lib\net45\Serilog.Settings.AppSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Async, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Async.1.3.0\lib\net45\Serilog.Sinks.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.4.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Map, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Map.1.0.0\lib\netstandard2.0\Serilog.Sinks.Map.dll</HintPath>
+    </Reference>
+    <Reference Include="Superpower, Version=1.0.0.0, Culture=neutral, PublicKeyToken=aec39280ded1b3a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Superpower.2.0.0\lib\net45\Superpower.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.18.3.0.40\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=18.3460.0.40, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.18.3.0.40\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.1, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Umbraco.SqlServerCE.4.0.0.1\lib\net472\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe.Entity, Version=4.0.0.1, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Umbraco.SqlServerCE.4.0.0.1\lib\net472\System.Data.SqlServerCe.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO" />
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.4.0.0\lib\net46\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Umbraco.Core, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.8.8.0\lib\net472\Umbraco.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=3.3.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.2.5.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net47\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.5.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net47\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net47\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.9.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net47\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.11\lib\net47\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ProteinFilter.xaml.cs">
+      <DependentUpon>ProteinFilter.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MascotReader.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ProteinFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets" Condition="Exists('..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets'))" />
+  </Target>
+</Project>

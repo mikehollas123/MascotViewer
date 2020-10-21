@@ -1,0 +1,23 @@
+﻿<Window x:Class="MascotViewer.ProteinFilter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MascotViewer"
+        mc:Ignorable="d"
+        Title="ProteinFilter" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="incProtDataGrid" ItemsSource="{Binding Path=IncProtList}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="10,10,10,50" Grid.Column="0" />
+        <DataGrid x:Name="exProtDataGrid" ItemsSource="{Binding Path=ExProtList}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="10,10,10,50" Grid.Column="2"/>
+        <StackPanel Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical">
+            <Button x:Name="buttonright" FontFamily="Segoe UI Symbol"  Content="&#xE111;" HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="27" Click="buttonright_Click" />
+            <Button x:Name="buttonLeft" FontFamily="Segoe UI Symbol" Content="&#xE112;" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="27" Click="buttonLeft_Click" />
+        </StackPanel>
+ 
+    </Grid>
+</Window>

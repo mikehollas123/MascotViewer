@@ -1,0 +1,130 @@
+﻿<Window x:Class="MascotViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+        xmlns:local="clr-namespace:MascotViewer"
+        mc:Ignorable="d"
+        Title="Mascot Figure Viewer" Height="800" Width="1200">
+    <Grid x:Name="SciChart" VerticalAlignment="Stretch">
+        <Grid.Resources>
+
+          
+
+
+            <Style x:Key="CursorTooltipContainerStyle" TargetType="s:CursorLabelControl">
+
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="s:CursorLabelControl">
+                            <Border Background="White"
+                        BorderBrush="Black"
+                        BorderThickness="2"
+                        Opacity="0.7"
+                        Padding="2.5">
+                                <ItemsControl ItemsSource="{Binding DataContext.SeriesData.SeriesInfo, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ItemsControl.ItemTemplate>
+
+
+                                        <DataTemplate DataType="s:XySeriesInfo">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock FontSize="15" Foreground="Black">
+                        <Run FontWeight="Bold" Text="Accession: "/>
+                        <Run FontWeight="Normal" Text="{Binding PointMetadata.Accession, StringFormat='{}{0}'}"/>
+                                                </TextBlock>
+                                                <TextBlock FontSize="15" Foreground="Black">
+                        <Run FontWeight="Bold" Text="Name: "/>
+                        <Run FontWeight="Normal" Text="{Binding PointMetadata.SimpleName, StringFormat='{}{0}'}"/>
+                                                </TextBlock>
+                                                <TextBlock FontSize="15" Foreground="Black">
+                        <Run FontWeight="Bold" Text="Rank: "/>
+                        <Run FontWeight="Normal" Text="{Binding PointMetadata.Rank, StringFormat='{}{0} ', Mode=OneWay}"/>
+
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+
+            </Style>
+
+
+        </Grid.Resources>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--  Create the chart surface  -->
+        <!-- where xmlns:s="http://schemas.abtsoftware.co.uk/scichart" -->
+        <s:SciChartSurface x:Name="sciChartSurface"  Grid.Column="2" s:ThemeManager.Theme="BrightSpark" Background="White"  Margin="10" ZoomState="UserZooming" >
+         
+            <s:SciChartSurface.RenderableSeries>
+
+                <s:XyScatterRenderableSeries x:Name="ScatterSeries" >
+
+                </s:XyScatterRenderableSeries>
+            </s:SciChartSurface.RenderableSeries>
+
+            <!--  Create an X Axis  -->
+            <s:SciChartSurface.XAxis>
+                <s:NumericAxis AxisTitle="Rank Order" GrowBy="0,0.1" DrawMajorGridLines="False" DrawMinorGridLines="False" DrawMajorBands="False" />
+            </s:SciChartSurface.XAxis>
+            <!--  Create a Y Axis  -->
+            <s:SciChartSurface.YAxis>
+                <s:NumericAxis AxisTitle="Counts" GrowBy="0,0.1" DrawMajorGridLines="False" DrawMinorGridLines="False" DrawMajorBands="False"/>
+            </s:SciChartSurface.YAxis>
+            <!--  Specify interactivity modifiers  -->
+            <s:SciChartSurface.ChartModifier>
+                <s:ModifierGroup>
+                    <s:ZoomPanModifier XyDirection="XyDirection" ClipModeX="None"
+                               ZoomExtentsY="False"/>
+                    <s:MouseWheelZoomModifier ActionType="Zoom" XyDirection="XYDirection"/>
+                    <s:RubberBandXyZoomModifier ExecuteOn="MouseRightButton" />
+                    <s:ZoomExtentsModifier ExecuteOn="MouseDoubleClick" />
+
+                    <s:CursorModifier ShowAxisLabels="False" ShowTooltip="True" ShowTooltipOn="MouseHover" TooltipContainerStyle="{StaticResource CursorTooltipContainerStyle}"/>
+
+
+                </s:ModifierGroup>
+            </s:SciChartSurface.ChartModifier>
+
+        </s:SciChartSurface>
+
+
+        <Label Content="Samples" HorizontalAlignment="Left"  Margin="10,51,0,0" VerticalAlignment="Top" Width="79" Grid.Column="0"/>
+        <Label x:Name="labelControl" Content="Control" HorizontalAlignment="Left"  Margin="5,198,0,0" VerticalAlignment="Top" Width="79" Grid.Column="0" IsEnabled="False"/>
+
+        <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"  Click="Button_Click" Grid.Column="0" Margin="115,51,0,0" />
+        <ListBox Name="sampleListBox" ItemsSource="{Binding Path=SampleList}" HorizontalAlignment="Stretch" Height="100"  VerticalAlignment="Top"  Grid.Column="0" Margin="10,76,10,0" SelectionMode="Multiple"/>
+        <ListBox x:Name="controlListBox" ItemsSource="{Binding Path=ControlList}" HorizontalAlignment="Stretch" Height="100"  VerticalAlignment="Top"  Grid.Column="0" Margin="10,224,10,0" IsEnabled="False" SelectionMode="Multiple"/>
+        <Button x:Name="buttonDown" FontFamily="Segoe UI Symbol" Content="&#xE1FD;" HorizontalAlignment="Left" Height="29"  VerticalAlignment="Top" Width="27" Grid.Column="0" Margin="75,191,0,0"  Click="DownButton_Click" IsEnabled="False"/>
+        <Button x:Name="buttonUp" FontFamily="Segoe UI Symbol" Content="&#xE110;" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="27" Grid.Column="0" Margin="102,191,0,0"  Click="UpButton_Click" IsEnabled="False" />
+
+
+
+        <GridSplitter HorizontalAlignment="Stretch"   VerticalAlignment="Stretch" Width="5" Grid.Column="1"/>
+        <CheckBox x:Name="ControlCheckBox" Content="Control" HorizontalAlignment="Left" Margin="122,25,0,0" VerticalAlignment="Top" Click="CheckBox_Checked"/>
+        <Button Grid.Column="0" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="108,735,0,0" Click="Button_Click_1"/>
+        <CheckBox x:Name="topNCheck" Content="TopN Filter" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,344,0,0" Grid.Column="0" Click="topNCheck_Click"/>
+        <TextBox x:Name="topNInput" Text="100" TextAlignment="Right" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="50" Margin="102,341,0,0" Grid.Column="0" RenderTransformOrigin="0.46,-0.261"/>
+        <Button x:Name="ProteinFilter" Content="Protien Filtering" HorizontalAlignment="Center" VerticalAlignment="Top" Width="94"  Height="27" Click="ProteinFilter_Click" Margin="54,451,52,0"/>
+        <CheckBox x:Name="normCheck" Content="normalize by File" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,500,0,0" Click="normCheck_Checked" Visibility="Hidden"/>
+        <CheckBox x:Name="AnnotationCheck" Content="Annotations" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,381,0,0" Grid.Column="0"/>
+        <TextBox x:Name="AnnotaionN" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" TextAlignment="Right" Text="5" VerticalAlignment="Top" Width="50" Grid.Column="0" Margin="102,379,0,0"/>
+        <Button Content="Export" HorizontalAlignment="Left" Margin="16,735,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+
+
+
+    </Grid>
+</Window>
