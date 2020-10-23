@@ -1,32 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿
 using Microsoft.Win32;
-using SciChart.Charting.Model.ChartData;
+
 using SciChart.Charting.Model.DataSeries;
-using SciChart.Charting.Visuals;
+
 using SciChart.Charting.Visuals.Annotations;
 using SciChart.Charting.Visuals.PointMarkers;
 using SciChart.Charting.Visuals.RenderableSeries;
 using SciChart.Core;
-using SciChart.Core.Extensions;
+
 using System;
-using System.Collections.Concurrent;
+
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+
 using System.Linq;
-using System.Text;
+
 using System.Threading.Tasks;
-using System.Web.UI;
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Umbraco.Core;
+
 
 namespace MascotViewer
 {
@@ -580,7 +575,7 @@ dataSeries.Append(i+1, RankOrderdArray[i].PeptideCount, new MikesMetaData(i+1, R
             saveFile.Filter = "PNG (*.png)|*.png|JPEG(*.jpeg)|*.jpeg|XPS(*.xps)|*.xps"; ;
             saveFile.ShowDialog();
             var file = saveFile.FileName;
-            var fileType = file.GetFileExtension();
+            var fileType = System.IO.Path.GetExtension(file);
             if (file == "MascotExportedFile.png")
                 return;
             switch (fileType)
