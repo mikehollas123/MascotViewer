@@ -116,7 +116,6 @@ namespace MascotViewer
             return proteins;
         }
 
-
         public List<IProtein> GetProteins()
         {
             uint flags, flags2, minPepLenInPepSummary;
@@ -156,7 +155,73 @@ namespace MascotViewer
 
             var totalNumHits = msSummary.getNumberOfHits();
             var proteins = new List<IProtein>(totalNumHits);
+         
+            for (int i = 1; i <= totalNumHits; i++)
+            {
+                var prot = msSummary.getHit(i);
 
+                var accession = prot.getAccession();
+                var count = prot.getNumPeptides();
+                var description = msSummary.getProteinDescription(accession);
+                var mass = msSummary.getProteinMass(accession);
+                var coverage = prot.getCoverage();
+                var score = prot.getScore();
+                var RMS = prot.getRMSDeltas(msSummary);
+
+                proteins.Add(new SmallProtein()
+                {
+
+                    Accession = accession,
+                    PeptideCount = count,
+                    Mass = mass,
+                    Description = description
+                });
+           
+            }
+
+            return proteins;
+        }
+
+        public List<IProtein> GetProteins(IProgress<double> progress)
+        {
+            uint flags, flags2, minPepLenInPepSummary;
+            int maxHitsToReport;
+            double minProbability, ignoreIonsScoreBelow;
+            bool usePeptideSummary;
+
+            string scriptName = this._mascotFile.get_ms_mascotresults_params(
+                                        this._mascotOptions,
+                                        out flags,
+                                        out minProbability,
+                                        out maxHitsToReport,
+                                        out ignoreIonsScoreBelow,
+                                        out minPepLenInPepSummary,
+                                        out usePeptideSummary,
+                                        out flags2);
+            ms_mascotresults msSummary;
+            if (usePeptideSummary)
+            {
+                msSummary = new ms_peptidesummary(this._mascotFile, flags,
+                   minProbability,
+                   maxHitsToReport,
+                   "", //unigene file
+                   ignoreIonsScoreBelow,
+                   (int)minPepLenInPepSummary,
+                   null,
+                   flags2);
+            }
+            else
+            {
+                msSummary = new ms_proteinsummary(_mascotFile, flags,
+                                minProbability,
+                                 maxHitsToReport,
+                                  null,
+                                  null);
+            }
+
+            var totalNumHits = msSummary.getNumberOfHits();
+            var proteins = new List<IProtein>(totalNumHits);
+            double progCount= 0;
             for (int i = 1; i <= totalNumHits; i++)
             {
                 var prot = msSummary.getHit(i);
@@ -177,6 +242,8 @@ namespace MascotViewer
                     Mass = mass,
                     Description = description
                 });
+                progCount += (1.0 / (double)totalNumHits);
+                progress.Report(progCount);
             }
 
             return proteins;

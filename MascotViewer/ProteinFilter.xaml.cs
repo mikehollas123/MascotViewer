@@ -31,7 +31,7 @@ namespace MascotViewer
         public ProteinFilter()
         {
             InitializeComponent();
-           
+          
         }
  
 
@@ -43,11 +43,9 @@ namespace MascotViewer
 
             if (incProtDataGrid.SelectedIndex != -1)
             {
- var index = incProtDataGrid.SelectedIndex;
-            viewModel.ExProtList.Add(viewModel.IncProtList[index]);
-               
+                viewModel.ExProtList.Add((SmallProtein)incProtDataGrid.SelectedItem);
 
-                viewModel.IncProtList.RemoveAt(index);
+                viewModel.IncProtList.Remove((SmallProtein)incProtDataGrid.SelectedItem);
             }
            
 
@@ -61,11 +59,10 @@ namespace MascotViewer
 
             if (exProtDataGrid.SelectedIndex != -1)
             {
-                var index = exProtDataGrid.SelectedIndex;
-                viewModel.IncProtList.Add(viewModel.ExProtList[index]);
+                viewModel.IncProtList.Add((SmallProtein)exProtDataGrid.SelectedItem);
 
-                viewModel.ExProtList.RemoveAt(index);
-              
+                viewModel.ExProtList.Remove((SmallProtein)exProtDataGrid.SelectedItem);
+
             }
         }
     }

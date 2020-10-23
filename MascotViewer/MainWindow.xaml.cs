@@ -108,14 +108,15 @@ namespace MascotViewer
 
         public Dictionary<string, double> _fileTotalPetideCount = new Dictionary<string, double>();
 
-
+  
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = theDataContext;
+            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var datFile = new OpenFileDialog();
             datFile.Multiselect = true;
@@ -125,6 +126,11 @@ namespace MascotViewer
                 var files = datFile.FileNames;
 
                 //List<string> toAdd = new List<>
+                ProgressBar.Visibility = Visibility.Visible;
+                int multiplier = 1;
+                var progress = new Progress<double>(percent => ProgressBar.ProgressValue = (percent * (100/files.Length)) *multiplier);
+
+               
 
                 foreach (var file in files)
                 {
@@ -134,11 +140,13 @@ namespace MascotViewer
                         {
                         theDataContext.Mascotfiles.Add(mFile.FileName, file);
                         theDataContext.SampleList.Add(mFile.FileName);
-                            AddNewProteins(mFile.FileName);
+                            await AddNewProteins(mFile.FileName,progress);
                         }
                     }
+                    multiplier++;
                 } 
             }
+            ProgressBar.Visibility = Visibility.Hidden;
         }
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
@@ -313,13 +321,13 @@ dataSeries.Append(i+1, RankOrderdArray[i].PeptideCount, new MikesMetaData(i+1, R
 
    foreach (var protein in theDataContext.IncProtList)
                 {
-                    double controlValue = 1;
+                    double controlValue;
                     if (controlDict.ContainsKey(protein.Accession) )
 
                         controlValue = controlDict[protein.Accession];
                     else
                     {
-                        controlValue = 1;
+                        controlValue = 1.0/theDataContext.ControlList.Count();
                     }
                     var forwardValue = protein.PeptideCount ;
                     FinalDict.Add(protein.Accession, new Tuple<double, string>( Math.Log(forwardValue, 2) - Math.Log(controlValue, 2),protein.Description.Split(' ')[0]));
@@ -405,12 +413,19 @@ dataSeries.Append(i+1, RankOrderdArray[i].PeptideCount, new MikesMetaData(i+1, R
             }
 
         }
-        public void AddNewProteins(string File)
-        {
-            using (MascotReader mreader = new MascotReader(theDataContext.Mascotfiles[File]))
+
+
+
+
+        public async Task AddNewProteins(string File, Progress<double> progress = null)
+        { 
+            await Task.Run(() => { using (MascotReader mreader = new MascotReader(theDataContext.Mascotfiles[File]))
             {
+
+               
+
                 theDataContext.IncProtDict[File] = new Dictionary<string, IProtein>();
-                var proteins = mreader.GetProteins();
+                var proteins =   mreader.GetProteins(progress);
                 foreach (var prot in proteins)
                 {
                     if (theDataContext.IncProtDict[File].ContainsKey(prot.Accession))
@@ -422,7 +437,11 @@ dataSeries.Append(i+1, RankOrderdArray[i].PeptideCount, new MikesMetaData(i+1, R
                         theDataContext.IncProtDict[File][prot.Accession] = prot;
                     }
                 }
-            }
+            } });
+
+           
+           
+            
         }
 
 
@@ -439,7 +458,7 @@ dataSeries.Append(i+1, RankOrderdArray[i].PeptideCount, new MikesMetaData(i+1, R
                     }
                     else
                     {
-                        tempIncDict[prot.Key] = prot.Value;
+                        tempIncDict[prot.Key] = new SmallProtein() { Accession = prot.Value.Accession, Mass = prot.Value.Mass, Description = prot.Value.Description, PeptideCount = prot.Value.PeptideCount };
                         tempIncDict[prot.Key].PeptideCount /= theDataContext.IncProtDict.Count;
                     }
                 }
@@ -462,6 +481,7 @@ dataSeries.Append(i+1, RankOrderdArray[i].PeptideCount, new MikesMetaData(i+1, R
                 }
                
             }
+            
 
 
         }
@@ -481,74 +501,75 @@ dataSeries.Append(i+1, RankOrderdArray[i].PeptideCount, new MikesMetaData(i+1, R
 
             p.Show();
 
+
         }
 
-        private void normCheck_Checked(object sender, RoutedEventArgs e)
-        {
-            if (normCheck.IsChecked == true)
-            {
-               foreach (var file in theDataContext.IncProtDict)
-                {
-                    double totalCounts = 0;
-                    foreach(var prot in file.Value)
-                    {
-                        totalCounts += prot.Value.PeptideCount;
-                    }
-                    _fileTotalPetideCount[file.Key] = totalCounts;
+        //private void normCheck_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    if (normCheck.IsChecked == true)
+        //    {
+        //       foreach (var file in theDataContext.IncProtDict)
+        //        {
+        //            double totalCounts = 0;
+        //            foreach(var prot in file.Value)
+        //            {
+        //                totalCounts += prot.Value.PeptideCount;
+        //            }
+        //            _fileTotalPetideCount[file.Key] = totalCounts;
 
-                    foreach (var prot in file.Value)
-                    {
-                        prot.Value.PeptideCount /= totalCounts;
-                    }
-
-
-                }
+        //            foreach (var prot in file.Value)
+        //            {
+        //                prot.Value.PeptideCount /= totalCounts;
+        //            }
 
 
-                foreach (var file in theDataContext.ExProtDict)
-                {
-                    double totalCounts = 0;
-                    foreach (var prot in file.Value)
-                    {
-                        totalCounts += prot.Value.PeptideCount;
-                    }
-                    _fileTotalPetideCount[file.Key] = totalCounts;
-                    foreach (var prot in file.Value)
-                    {
-                        prot.Value.PeptideCount /= totalCounts;
-                    }
+        //        }
 
 
-                }
-            }
-            else if (normCheck.IsChecked == false)
-            {
-                foreach (var file in theDataContext.IncProtDict)
-                {
+        //        foreach (var file in theDataContext.ExProtDict)
+        //        {
+        //            double totalCounts = 0;
+        //            foreach (var prot in file.Value)
+        //            {
+        //                totalCounts += prot.Value.PeptideCount;
+        //            }
+        //            _fileTotalPetideCount[file.Key] = totalCounts;
+        //            foreach (var prot in file.Value)
+        //            {
+        //                prot.Value.PeptideCount /= totalCounts;
+        //            }
+
+
+        //        }
+        //    }
+        //    else if (normCheck.IsChecked == false)
+        //    {
+        //        foreach (var file in theDataContext.IncProtDict)
+        //        {
                     
-                    foreach (var prot in file.Value)
-                    {
-                        prot.Value.PeptideCount *= _fileTotalPetideCount[file.Key];
-                    }
+        //            foreach (var prot in file.Value)
+        //            {
+        //                prot.Value.PeptideCount *= _fileTotalPetideCount[file.Key];
+        //            }
              
 
 
-                }
+        //        }
 
 
-                foreach (var file in theDataContext.ExProtDict)
-                {
+        //        foreach (var file in theDataContext.ExProtDict)
+        //        {
              
-                    foreach (var prot in file.Value)
-                    {
-                        prot.Value.PeptideCount *= _fileTotalPetideCount[file.Key];
-                    }
+        //            foreach (var prot in file.Value)
+        //            {
+        //                prot.Value.PeptideCount *= _fileTotalPetideCount[file.Key];
+        //            }
 
-                }
-            }
-            UpdateObservableLists();
+        //        }
+        //    }
+        //    UpdateObservableLists();
 
-        }
+        //}
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -560,7 +581,8 @@ dataSeries.Append(i+1, RankOrderdArray[i].PeptideCount, new MikesMetaData(i+1, R
             saveFile.ShowDialog();
             var file = saveFile.FileName;
             var fileType = file.GetFileExtension();
-
+            if (file == "MascotExportedFile.png")
+                return;
             switch (fileType)
             {
                 case ".png":
